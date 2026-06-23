@@ -32,7 +32,7 @@ reveals.forEach((el, i) => {
 });
 
 /* Count-up stats */
-const counters = document.querySelectorAll('.stat__num');
+const counters = document.querySelectorAll('.stat__num, .experience__num span');
 const countIO = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
     if (!e.isIntersecting) return;

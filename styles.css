@@ -1,7 +1,7 @@
 /* =========================================================
    Prelude — Event Production Studio (mockup)
    Aesthetic: Apple-minimal. Neutral white/black, generous
-   whitespace, scroll-driven. Accents: two blues + subtle amber.
+   whitespace, scroll-driven. Black + white, single warm accent.
    ========================================================= */
 :root {
   /* Neutrals */
@@ -14,11 +14,11 @@
   --light:     #f5f5f7;   /* text on dark */
   --light-soft:#a1a1a6;   /* muted on dark */
 
-  /* Accents — restrained, cooler steel blue */
-  --blue:      #4a719b;   /* primary steel blue */
-  --blue-deep: #2d4c6b;   /* deeper steel */
-  --blue-sky:  #8cb0cf;   /* light steel (on dark) */
-  --amber:     #cda35a;   /* muted amber, used sparingly */
+  /* Black + white first. A single warm accent, used as a whisper. */
+  --btn:       #161616;   /* buttons / marks: near-black */
+  --btn-hover: #000000;
+  --accent:      #b07b3a; /* warm amber accent (on light) */
+  --accent-soft: #c79a59; /* lighter amber accent (on dark) */
 
   --maxw: 1180px;
   --ease: cubic-bezier(.22,.61,.36,1);
@@ -53,9 +53,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    ========================================================= */
 .eyebrow {
   font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
-  font-weight: 600; color: var(--blue-sky); margin: 0 0 20px;
+  font-weight: 600; color: var(--accent-soft); margin: 0 0 20px;
 }
-.eyebrow--dark { color: var(--blue); }
+.eyebrow--dark { color: var(--accent); }
 
 .h2 {
   font-family: "Fraunces", Georgia, serif;
@@ -82,17 +82,17 @@ em { font-style: italic; }
   padding: 14px 28px; border-radius: 980px; cursor: pointer;
   border: 1px solid transparent; transition: transform .35s var(--ease), background .35s, color .35s, border-color .35s, box-shadow .35s;
 }
-.btn--solid { background: var(--blue); color: #fff; }
-.btn--solid:hover { transform: translateY(-2px); background: var(--blue-deep); box-shadow: 0 10px 30px -12px rgba(74,113,155,.55); }
+.btn--solid { background: var(--btn); color: #fff; }
+.btn--solid:hover { transform: translateY(-2px); background: var(--btn-hover); box-shadow: 0 10px 30px -14px rgba(0,0,0,.5); }
 .btn--ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); }
 .btn--ghost:hover { border-color: #fff; transform: translateY(-2px); }
 .btn--full { width: 100%; }
 
 .link-arrow {
-  display: inline-block; margin-top: 24px; font-weight: 500; color: var(--blue);
+  display: inline-block; margin-top: 24px; font-weight: 500; color: var(--accent);
   border-bottom: 1px solid transparent; transition: border-color .3s;
 }
-.link-arrow:hover { border-color: var(--blue); }
+.link-arrow:hover { border-color: var(--accent); }
 
 /* =========================================================
    Nav
@@ -115,7 +115,7 @@ em { font-style: italic; }
 .nav.scrolled .brand { color: var(--ink); }
 .brand__mark {
   display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px;
-  background: var(--blue); color: #fff; font-family: "Fraunces", serif; font-size: 19px;
+  background: var(--btn); color: #fff; font-family: "Fraunces", serif; font-size: 19px;
 }
 .brand__name { font-family: "Fraunces", serif; font-size: 21px; letter-spacing: .01em; }
 
@@ -128,7 +128,7 @@ em { font-style: italic; }
   padding: 9px 18px; border: 1px solid rgba(255,255,255,.35); border-radius: 980px;
 }
 .nav.scrolled .nav__cta { border-color: var(--line); }
-.nav__cta:hover { background: var(--blue); border-color: var(--blue) !important; color: #fff !important; }
+.nav__cta:hover { background: var(--btn); border-color: var(--btn) !important; color: #fff !important; }
 
 .nav__toggle { display: none; background: none; border: 0; cursor: pointer; flex-direction: column; gap: 6px; padding: 6px; }
 .nav__toggle span { width: 26px; height: 2px; background: #fff; display: block; transition: background .4s; }
@@ -142,16 +142,15 @@ em { font-style: italic; }
   position: absolute; inset: 0; z-index: 0;
   /* Cinematic fallback shown if the video/poster doesn't load */
   background:
-    radial-gradient(110% 90% at 70% 15%, rgba(74,113,155,.34), transparent 55%),
-    radial-gradient(90% 80% at 10% 95%, rgba(205,163,90,.14), transparent 55%),
-    linear-gradient(135deg, #0b0e14 0%, #12161f 45%, #05070b 100%);
+    radial-gradient(100% 80% at 75% 12%, rgba(255,255,255,.06), transparent 55%),
+    radial-gradient(90% 80% at 8% 98%, rgba(176,123,58,.10), transparent 55%),
+    linear-gradient(135deg, #131313 0%, #1b1b1b 45%, #060606 100%);
 }
 .hero__video { width: 100%; height: 100%; object-fit: cover; }
 .hero__scrim {
   position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.22) 38%, rgba(0,0,0,.78) 100%),
-    radial-gradient(120% 80% at 12% 18%, rgba(45,76,107,.30), transparent 58%);
+    linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.20) 38%, rgba(0,0,0,.80) 100%);
 }
 .hero__content { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 32px; width: 100%; }
 .hero__title {
@@ -179,7 +178,7 @@ em { font-style: italic; }
   animation: marquee 30s linear infinite;
   font-family: "Fraunces", serif; font-size: clamp(20px, 2.4vw, 30px); color: rgba(245,245,247,.45);
 }
-.marquee__track i { color: var(--amber); font-style: normal; opacity: .9; }
+.marquee__track i { color: var(--accent-soft); font-style: normal; opacity: .9; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* =========================================================
@@ -196,8 +195,8 @@ em { font-style: italic; }
   border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 32px;
   background: var(--bg-soft); display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px;
 }
-.stat__num { font-family: "Fraunces", serif; font-size: clamp(42px, 5vw, 60px); line-height: 1; color: var(--blue); }
-.stat__suffix { font-family: "Fraunces", serif; font-size: clamp(24px, 3vw, 34px); color: var(--blue); }
+.stat__num { font-family: "Fraunces", serif; font-size: clamp(42px, 5vw, 60px); line-height: 1; color: var(--accent); }
+.stat__suffix { font-family: "Fraunces", serif; font-size: clamp(24px, 3vw, 34px); color: var(--accent); }
 .stat__label { flex: 1 1 220px; margin: 0; color: var(--ink-soft); font-size: 15px; }
 
 /* =========================================================
@@ -208,8 +207,8 @@ em { font-style: italic; }
   background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
   border-radius: var(--radius); padding: 36px 28px; transition: transform .4s var(--ease), background .4s, border-color .4s;
 }
-.card:hover { transform: translateY(-6px); background: rgba(255,255,255,.06); border-color: rgba(140,176,207,.45); }
-.card__icon { font-size: 24px; color: var(--blue-sky); margin-bottom: 24px; }
+.card:hover { transform: translateY(-6px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22); }
+.card__icon { font-size: 24px; color: var(--accent-soft); margin-bottom: 24px; }
 .card h3 { font-family: "Fraunces", serif; font-weight: 400; font-size: 23px; margin: 0 0 12px; color: var(--light); }
 .card p { margin: 0; color: var(--light-soft); font-size: 15px; }
 
@@ -219,7 +218,7 @@ em { font-style: italic; }
 .process { background: var(--bg-soft); }
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
 .step { border-top: 1px solid var(--ink); padding-top: 24px; }
-.step__num { font-family: "Fraunces", serif; font-size: 15px; color: var(--blue); letter-spacing: .08em; }
+.step__num { font-family: "Fraunces", serif; font-size: 15px; color: var(--accent); letter-spacing: .08em; }
 .step h3 { font-family: "Fraunces", serif; font-weight: 400; font-size: 22px; margin: 14px 0 10px; }
 .step p { margin: 0; color: var(--ink-soft); font-size: 15px; }
 
@@ -230,14 +229,14 @@ em { font-style: italic; }
 .tile {
   position: relative; border-radius: var(--radius); overflow: hidden;
   grid-column: span 1; display: flex; align-items: flex-end;
-  /* Gradient fallback so tiles read as composed cards before real photos load */
-  background: linear-gradient(150deg, #161a22 0%, #0c0f15 100%);
+  /* Neutral gradient fallback so tiles read as composed cards before real photos load */
+  background: linear-gradient(150deg, #1c1c1c 0%, #0c0c0c 100%);
 }
-.tile:nth-child(1) { background: linear-gradient(150deg, #1a2436 0%, #0a0f1a 100%); }
-.tile:nth-child(2) { background: linear-gradient(150deg, #14233b 0%, #0a1322 100%); }
-.tile:nth-child(3) { background: linear-gradient(150deg, #241f17 0%, #14110b 100%); }
-.tile:nth-child(4) { background: linear-gradient(150deg, #18202e 0%, #0b0f17 100%); }
-.tile:nth-child(5) { background: linear-gradient(150deg, #11243f 0%, #0a1526 100%); }
+.tile:nth-child(1) { background: linear-gradient(150deg, #242424 0%, #0d0d0d 100%); }
+.tile:nth-child(2) { background: linear-gradient(150deg, #1d1d1d 0%, #0a0a0a 100%); }
+.tile:nth-child(3) { background: linear-gradient(150deg, #262320 0%, #121110 100%); }
+.tile:nth-child(4) { background: linear-gradient(150deg, #1a1a1a 0%, #090909 100%); }
+.tile:nth-child(5) { background: linear-gradient(150deg, #212121 0%, #0b0b0b 100%); }
 .tile--lg { grid-column: span 2; grid-row: span 2; }
 .tile--wide { grid-column: span 2; }
 .tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 42%, rgba(0,0,0,.82)); z-index: 1; }
@@ -247,7 +246,7 @@ em { font-style: italic; }
 }
 .tile:hover::before { transform: scale(1.06); }
 .tile__meta { position: relative; z-index: 2; padding: 24px 26px; color: #fff; }
-.tile__meta span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--blue-sky); }
+.tile__meta span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-soft); }
 .tile__meta h4 { font-family: "Fraunces", serif; font-weight: 400; font-size: 24px; margin: 6px 0 0; }
 
 /* =========================================================
@@ -262,14 +261,50 @@ em { font-style: italic; }
 .quote cite { font-style: normal; color: var(--ink-soft); font-size: 15px; letter-spacing: .03em; }
 
 /* =========================================================
+   Statement band (big, glanceable)
+   ========================================================= */
+.statement { text-align: center; }
+.statement__text {
+  font-family: "Fraunces", serif; font-weight: 300;
+  font-size: clamp(34px, 6vw, 76px); line-height: 1.06; letter-spacing: -.02em;
+  margin: 0; color: var(--light);
+}
+.amber { color: var(--accent-soft); font-style: italic; }
+
+/* =========================================================
+   Lean-by-design band
+   ========================================================= */
+.lean { background: var(--bg); }
+.lean__inner { max-width: 760px; }
+.lean__inner .lead { max-width: 48ch; }
+
+/* =========================================================
+   Experience figure
+   ========================================================= */
+.experience__inner { display: flex; align-items: center; gap: clamp(24px, 4vw, 48px); flex-wrap: wrap; }
+.experience__num {
+  font-family: "Fraunces", serif; font-weight: 300; line-height: .9;
+  font-size: clamp(80px, 14vw, 180px); color: var(--light); display: flex; align-items: flex-start;
+}
+.experience__num i { font-style: normal; font-size: .4em; color: var(--accent-soft); margin-top: .1em; }
+.experience__label {
+  font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(20px, 2.6vw, 30px);
+  line-height: 1.3; color: var(--light-soft); max-width: 18ch; margin: 0;
+}
+
+/* =========================================================
+   Soft section helper
+   ========================================================= */
+.section--soft { background: var(--bg-soft); }
+
+/* =========================================================
    CTA / contact
    ========================================================= */
-.cta { background: var(--bg-soft); }
 .contact__list { margin-top: 38px; display: grid; gap: 18px; }
 .contact__list li { display: grid; grid-template-columns: 70px 1fr; align-items: baseline; gap: 16px; border-top: 1px solid var(--line); padding-top: 16px; }
 .contact__list span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
 .contact__list a, .contact__list address { font-style: normal; font-size: 17px; color: var(--ink); }
-.contact__list a:hover { color: var(--blue); }
+.contact__list a:hover { color: var(--accent); }
 
 .cta__form { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(28px, 4vw, 44px); }
 .field { margin-bottom: 18px; }
@@ -280,10 +315,10 @@ em { font-style: italic; }
   transition: border-color .3s, box-shadow .3s, background .3s;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
-  outline: none; border-color: var(--blue); background: var(--bg); box-shadow: 0 0 0 4px rgba(74,113,155,.16);
+  outline: none; border-color: var(--ink); background: var(--bg); box-shadow: 0 0 0 4px rgba(0,0,0,.08);
 }
 .field textarea { resize: vertical; }
-.form__note { margin: 14px 0 0; font-size: 14px; color: var(--blue); min-height: 18px; }
+.form__note { margin: 14px 0 0; font-size: 14px; color: var(--accent); min-height: 18px; }
 
 /* =========================================================
    Footer
