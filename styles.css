@@ -14,11 +14,25 @@
   --light:     #f5f5f7;   /* text on dark */
   --light-soft:#a1a1a6;   /* muted on dark */
 
-  /* Black + white first. A single warm accent, used as a whisper. */
+  /* Black + white first. Buttons/marks stay black across every theme. */
   --btn:       #161616;   /* buttons / marks: near-black */
   --btn-hover: #000000;
-  --accent:      #b07b3a; /* warm amber accent (on light) */
-  --accent-soft: #c79a59; /* lighter amber accent (on dark) */
+
+  /* Single swappable accent. Default = neutral graphite (set a theme
+     via <html data-theme="..."> to flex it per client / vertical). */
+  --accent:      #4a4a50; /* accent on light */
+  --accent-soft: #9a9aa2; /* accent on dark */
+}
+
+/* ---- Accent themes (swap the whole site's color with one attribute) ---- */
+[data-theme="mono"]      { --accent: #46464b; --accent-soft: #9a9aa0; }
+[data-theme="medical"]   { --accent: #2f6fe0; --accent-soft: #79a7f2; } /* clinical blue */
+[data-theme="fashion"]   { --accent: #d24d86; --accent-soft: #ec8fb8; } /* fashion pink  */
+[data-theme="corporate"] { --accent: #2c7a5b; --accent-soft: #66ad8a; } /* corporate green */
+[data-theme="violet"]    { --accent: #6b4fd0; --accent-soft: #a594ea; } /* creative violet */
+[data-theme="oxblood"]   { --accent: #9c3b46; --accent-soft: #cf7e87; } /* luxe oxblood */
+
+:root {
 
   --maxw: 1180px;
   --ease: cubic-bezier(.22,.61,.36,1);
@@ -142,8 +156,8 @@ em { font-style: italic; }
   position: absolute; inset: 0; z-index: 0;
   /* Cinematic fallback shown if the video/poster doesn't load */
   background:
-    radial-gradient(100% 80% at 75% 12%, rgba(255,255,255,.06), transparent 55%),
-    radial-gradient(90% 80% at 8% 98%, rgba(176,123,58,.10), transparent 55%),
+    radial-gradient(100% 80% at 75% 12%, rgba(255,255,255,.07), transparent 55%),
+    radial-gradient(90% 80% at 8% 98%, rgba(255,255,255,.03), transparent 55%),
     linear-gradient(135deg, #131313 0%, #1b1b1b 45%, #060606 100%);
 }
 .hero__video { width: 100%; height: 100%; object-fit: cover; }
