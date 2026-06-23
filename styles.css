@@ -293,6 +293,18 @@ em { font-style: italic; }
 }
 
 /* =========================================================
+   Innovation pillars
+   ========================================================= */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; max-width: 880px; margin: 0 auto; }
+.pillars li { text-align: center; padding: 0 24px; border-left: 1px solid rgba(255,255,255,.12); }
+.pillars li:first-child { border-left: 0; }
+.pillars span {
+  display: block; font-family: "Fraunces", serif; font-size: clamp(19px, 2.2vw, 24px);
+  color: var(--light); margin-bottom: 6px;
+}
+.pillars p { margin: 0; font-size: 14px; letter-spacing: .02em; color: var(--accent-soft); }
+
+/* =========================================================
    Soft section helper
    ========================================================= */
 .section--soft { background: var(--bg-soft); }
@@ -354,6 +366,8 @@ em { font-style: italic; }
   .cards, .steps, .gallery { grid-template-columns: 1fr; }
   .gallery { grid-auto-rows: 200px; }
   .tile--lg, .tile--wide { grid-column: span 1; }
+  .pillars { grid-template-columns: 1fr; gap: 28px; }
+  .pillars li { border-left: 0; padding: 0; }
   .footer__inner { flex-direction: column; align-items: flex-start; }
 }
 
