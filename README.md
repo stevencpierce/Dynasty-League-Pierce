@@ -1,40 +1,50 @@
 # Prelude — Event Production Studio (website mockup)
 
-A clean, Apple-minimal marketing site for a premium event production company
-focused on photography, film, and a prep-driven, soup-to-nuts process.
+A clean, Apple-minimal marketing site for a premium event company: collaboration
+and prep first, full production, and a strategy that makes the work pay off long
+after the event.
 
-> **"Prelude" is a placeholder name** (a nod to the *preparation* that is the
-> core differentiator). Swap it freely. Imagery is placeholder stock and the
-> hero video is a sample clip — replace with real work.
+> **"Prelude" is a placeholder name.** Swap it freely. Imagery is placeholder and
+> the hero video is a sample clip — replace with real work.
 
 ## Design direction
-- **Aesthetic:** Apple-style minimalism — lots of neutral white/black,
-  generous whitespace, scroll-driven reveals.
-- **Accents:** two shades of blue (primary `#0a6cff`, deep `#0a3d8f`, sky
-  `#5ea2ff`) with a subtle amber (`#d99a36`) used sparingly. All accent colors
-  live as CSS variables at the top of `styles.css` — easy to retune.
-- **Type:** Inter for UI text, Fraunces (serif) for cinematic display headlines.
+- **Aesthetic:** black-and-white minimalism, headline-led, low text, scroll-driven.
+- **Accent (themeable):** the single accent flexes per client/vertical via
+  `<html data-theme="…">` — `medical` (blue), `corporate` (green), `violet`
+  (artistic), plus `fashion`, `oxblood`, `mono`. Buttons/marks stay black in
+  every theme. Defined at the top of `styles.css`.
+- **Type:** Inter for UI text; display face is one variable — `--display` in
+  `styles.css` (currently **Space Grotesk**; swap to `Bricolage Grotesque` or
+  `Syne` in one line). Headlines use a subtle "downhill glide" motion.
 
 ## Sections
-Hero (video) · client marquee · the prep "Approach" + stats · Services
-(Photography / Film / Production / Media Strategy) · 4-step Process
-(Discovery → Prep → Production → Post & Rollout) · Work gallery · pull quote ·
-contact/brief form · footer.
+Hero (video) · statement (*small made impactful / big made effortless*) ·
+Approach (collaboration + communicate early) · Services (Prep & Strategy ·
+Production · Asset Creation · Activation) · Team/scale · Innovation (AI + process)
+· 20+ years · Work gallery · contact form · footer.
+
+## Preview the fonts
+`compare.html` shows the three display-font candidates side by side. Web fonts
+only render in a real browser (not in headless screenshot tools), so use a live
+preview to judge type and motion.
 
 ## Run it
-No build step — it's plain HTML/CSS/JS. Just open `index.html`, or serve it:
+No build step — plain HTML/CSS/JS. Open `index.html`, or serve it:
 
 ```bash
 python3 -m http.server 8000   # then visit http://localhost:8000
 ```
 
+For a shareable link, drag the folder onto https://app.netlify.com/drop.
+
 ## Files
 - `index.html` — markup & copy
-- `styles.css` — design tokens + all styling
-- `script.js` — sticky nav, scroll reveals, count-up stats, form handler
+- `styles.css` — design tokens (color themes, `--display` font) + all styling
+- `script.js` — sticky nav, scroll reveals, count-up, form handler
+- `compare.html` — three-font comparison helper
 
 ## Notes for going to production
-- Replace placeholder copy, contact details, and the `[City]` placeholder.
+- Replace placeholder copy, contact details, and the real years figure.
 - Swap stock imagery / hero video for real event work (self-host the video).
 - Easy to port into Webflow later; this static version doubles as a reference
-  for layout, copy, and the color system.
+  for layout, copy, the color theming, and the type system.
