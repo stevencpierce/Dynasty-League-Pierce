@@ -172,6 +172,20 @@ em { font-style: italic; }
     /* gentle bottom grounding */
     linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 32%, rgba(0,0,0,.45) 100%);
 }
+/* Subtle confetti drifting over the crowd (sits above the image, below the text) */
+.hero__confetti { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.confetti-piece {
+  position: absolute; top: -6%; width: 4px; height: 12px; border-radius: 1px;
+  opacity: 0; will-change: transform, opacity;
+  animation: confettiFall linear infinite;
+}
+@keyframes confettiFall {
+  0%   { transform: translate3d(0, -10vh, 0) rotate(0deg);     opacity: 0; }
+  12%  { opacity: .75; }
+  88%  { opacity: .75; }
+  100% { transform: translate3d(14px, 112vh, 0) rotate(540deg); opacity: 0; }
+}
+
 .hero__content { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 32px; width: 100%; }
 .hero__title {
   font-family: var(--display); font-weight: 400;
@@ -409,4 +423,5 @@ em { font-style: italic; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
   .glide, .reveal .glide, .hero__title.glide { transform: none !important; opacity: 1 !important; }
+  .hero__confetti { display: none; }
 }
