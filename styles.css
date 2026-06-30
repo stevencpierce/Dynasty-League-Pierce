@@ -410,3 +410,64 @@ em { font-style: italic; }
   .reveal { opacity: 1; transform: none; }
   .glide, .reveal .glide, .hero__title.glide { transform: none !important; opacity: 1 !important; }
 }
+
+/* =========================================================
+   Capabilities — big-type offerings list
+   ========================================================= */
+.caps { background: var(--bg); }
+.caps__head { margin-bottom: clamp(28px, 4vw, 52px); }
+.caplist { border-top: 1px solid var(--line); }
+.cap {
+  display: grid; grid-template-columns: auto 1fr auto auto; align-items: center;
+  gap: clamp(16px, 3vw, 40px); padding: clamp(20px, 3vw, 36px) 6px;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left .4s var(--ease);
+}
+.cap:hover { padding-left: 18px; }
+.cap__idx { font-family: var(--display); font-size: 14px; color: var(--accent); letter-spacing: .05em; }
+.cap__name {
+  font-family: var(--display); font-weight: 500; margin: 0; letter-spacing: -.02em;
+  font-size: clamp(26px, 4vw, 48px); line-height: 1; color: var(--ink); transition: color .3s;
+}
+.cap:hover .cap__name { color: var(--accent); }
+.cap__desc { font-size: 15px; color: var(--ink-soft); text-align: right; white-space: nowrap; }
+.cap__arrow {
+  font-family: var(--display); font-size: 22px; color: var(--accent);
+  opacity: 0; transform: translate(-8px, 8px); transition: opacity .35s var(--ease), transform .35s var(--ease);
+}
+.cap:hover .cap__arrow { opacity: 1; transform: none; }
+
+/* =========================================================
+   Diagonal montage strips (scroll-driven parallax)
+   ========================================================= */
+.strips { position: relative; overflow: hidden; background: var(--bg-dark); padding: clamp(64px, 10vw, 120px) 0; }
+.strips__rot { display: grid; gap: 22px; transform: rotate(-6deg) scale(1.22); transform-origin: center; }
+.strip { display: flex; gap: 22px; width: max-content; will-change: transform; }
+.strip[data-strip="right"] { justify-content: flex-end; }
+.strip__img {
+  flex: 0 0 auto; width: clamp(220px, 26vw, 360px); height: clamp(140px, 16vw, 216px);
+  border-radius: 12px;
+  background: var(--img) center/cover no-repeat, linear-gradient(135deg, #232323 0%, #0d0d0d 100%);
+  box-shadow: 0 18px 40px -22px rgba(0,0,0,.7);
+}
+
+/* =========================================================
+   Clients — logo wall (black, centered white wordmarks)
+   ========================================================= */
+.clients { background: var(--bg-dark); }
+.logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.logo {
+  display: grid; place-items: center; aspect-ratio: 16 / 9;
+  border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: #0a0a0a;
+  transition: border-color .3s, background .3s, transform .3s var(--ease);
+}
+.logo:hover { border-color: rgba(255,255,255,.32); background: #121212; transform: translateY(-3px); }
+.logo span { font-family: var(--display); font-weight: 500; font-size: clamp(14px, 1.5vw, 19px); letter-spacing: .16em; color: #fff; }
+.logo img { max-width: 56%; max-height: 46%; object-fit: contain; filter: brightness(0) invert(1); opacity: .92; }
+
+@media (max-width: 760px) {
+  .cap { grid-template-columns: auto 1fr auto; }
+  .cap__desc { display: none; }
+  .logos { grid-template-columns: repeat(2, 1fr); }
+  .strips__rot { transform: rotate(-7deg) scale(1.4); }
+}

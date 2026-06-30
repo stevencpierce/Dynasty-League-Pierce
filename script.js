@@ -52,6 +52,31 @@ const countIO = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 counters.forEach((c) => countIO.observe(c));
 
+/* Diagonal montage strips — slide horizontally as the section scrolls past */
+(function () {
+  const section = document.querySelector('.strips');
+  const left = document.querySelector('.strip[data-strip="left"]');
+  const right = document.querySelector('.strip[data-strip="right"]');
+  if (!section || !left || !right) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const TRAVEL = 260; // px each row drifts across the scroll
+  let ticking = false;
+  const update = () => {
+    const r = section.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    // 0 when section enters bottom of viewport, 1 when it leaves the top
+    const p = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+    const shift = (p - 0.5) * 2; // -1 .. 1, centered
+    left.style.transform = 'translate3d(' + (-TRAVEL * shift) + 'px,0,0)';
+    right.style.transform = 'translate3d(' + (TRAVEL * shift) + 'px,0,0)';
+    ticking = false;
+  };
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+})();
+
 /* Footer year */
 document.getElementById('year').textContent = new Date().getFullYear();
 
