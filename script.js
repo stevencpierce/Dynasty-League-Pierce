@@ -52,27 +52,6 @@ const countIO = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 counters.forEach((c) => countIO.observe(c));
 
-/* Hero confetti — sparse, slow drift over the crowd (respects reduced motion) */
-(function () {
-  const host = document.getElementById('heroConfetti');
-  if (!host) return;
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const colors = ['#ffffff', 'var(--accent-soft)', 'rgba(255,255,255,.55)'];
-  const COUNT = 24;
-  for (let i = 0; i < COUNT; i++) {
-    const p = document.createElement('span');
-    p.className = 'confetti-piece';
-    const dur = 6 + Math.random() * 7;          // 6–13s fall
-    p.style.left = (Math.random() * 100) + '%';
-    p.style.height = (8 + Math.random() * 9) + 'px';
-    p.style.width = (3 + Math.random() * 3) + 'px';
-    p.style.background = colors[i % colors.length];
-    p.style.animationDuration = dur + 's';
-    p.style.animationDelay = (-Math.random() * dur) + 's';  // pre-stagger so it's mid-fall on load
-    host.appendChild(p);
-  }
-})();
-
 /* Footer year */
 document.getElementById('year').textContent = new Date().getFullYear();
 
