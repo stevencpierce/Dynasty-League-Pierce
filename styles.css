@@ -291,6 +291,32 @@ em { font-style: italic; }
   margin: 0; color: var(--light);
 }
 .accent-word { color: var(--accent-soft); font-style: italic; }
+.statement__sub {
+  margin: 26px 0 0; font-size: clamp(16px, 1.8vw, 22px);
+  color: var(--light-soft); letter-spacing: .01em;
+}
+
+/* =========================================================
+   Sectors — who we serve (each field keeps its own accent)
+   ========================================================= */
+.sector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.sector {
+  display: block; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--bg-soft); padding: clamp(30px, 4vw, 48px) clamp(24px, 3vw, 36px);
+  text-align: center; transition: transform .35s var(--ease), border-color .35s, box-shadow .35s;
+}
+.sector:hover { transform: translateY(-5px); box-shadow: 0 22px 44px -28px rgba(0,0,0,.28); }
+.sector h3 {
+  font-family: var(--display); font-weight: 500; margin: 0 0 10px;
+  font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -.02em;
+}
+.sector p { margin: 0; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.sector--medical h3    { color: #2f6fe0; }
+.sector--medical:hover { border-color: #2f6fe0; }
+.sector--corporate h3    { color: #2c7a5b; }
+.sector--corporate:hover { border-color: #2c7a5b; }
+.sector--university h3    { color: #6b4fd0; }
+.sector--university:hover { border-color: #6b4fd0; }
 
 /* =========================================================
    Lean-by-design band
@@ -389,6 +415,7 @@ em { font-style: italic; }
   .tile--lg, .tile--wide { grid-column: span 1; }
   .pillars { grid-template-columns: 1fr; gap: 28px; }
   .pillars li { border-left: 0; padding: 0; }
+  .sector-grid { grid-template-columns: 1fr; }
   .footer__inner { flex-direction: column; align-items: flex-start; }
 }
 
