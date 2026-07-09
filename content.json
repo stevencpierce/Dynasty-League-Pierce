@@ -5,7 +5,7 @@
     "name": "Aperio",
     "title": "Aperio — Events, Content & Strategy",
     "theme": "medical",
-    "version": "1.4"
+    "version": "1.5"
   },
 
   "hero": {
@@ -13,6 +13,7 @@
     "eyebrow": "Medical · Corporate · University",
     "title": "Prepare.\nTranslate.\nAmplify.",
     "lede": "Your goals, translated into an event — and a strategy for the content that outlives it.",
+    "note": "Not another agency — the execution partner agencies and brand teams call.",
     "image": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=2400&q=80"
   },
 
@@ -25,6 +26,7 @@
     "show": true,
     "eyebrow": "Who we serve",
     "title": "Your field. Your language.",
+    "lead": "You bring the vision — yours or your agency's. We execute it: the event, the content, the curation, and the plan to deploy it.",
     "items": [
       { "name": "Medical", "keywords": "Congresses · Symposia · Launches" },
       { "name": "Corporate", "keywords": "Summits · Town Halls · Investor Days" },

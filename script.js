@@ -78,6 +78,7 @@ function handleSubmit(e) {
       put('.hero .eyebrow', C.hero.eyebrow);
       put('.hero__title', C.hero.title, 'rich');
       put('.hero__lede', C.hero.lede, 'rich');
+      put('.hero__note', C.hero.note, 'rich');
       if (C.hero.image) { const img = document.querySelector('.hero__img'); if (img) img.src = C.hero.image; }
     }
 
@@ -92,6 +93,7 @@ function handleSubmit(e) {
     if (C.sectors) {
       put('#sectors .eyebrow', C.sectors.eyebrow);
       put('#sectors .h2', C.sectors.title, 'rich');
+      put('#sectors .section__head .lead', C.sectors.lead, 'rich');
       const grid = document.querySelector('.sector-grid');
       if (grid && Array.isArray(C.sectors.items)) {
         const cls = ['sector--medical', 'sector--corporate', 'sector--university'];

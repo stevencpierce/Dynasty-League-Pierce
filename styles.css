@@ -180,6 +180,11 @@ em { font-style: italic; }
   text-shadow: 0 2px 30px rgba(0,0,0,.45);
 }
 .hero__lede { font-size: clamp(16px, 1.6vw, 21px); max-width: 54ch; color: rgba(255,255,255,.9); margin: 0 0 38px; line-height: 1.5; text-shadow: 0 1px 16px rgba(0,0,0,.5); }
+.hero__note {
+  margin: -22px 0 36px; font-size: 13.5px; letter-spacing: .02em;
+  color: rgba(255,255,255,.62);
+  padding-left: 14px; border-left: 2px solid var(--accent-soft);
+}
 .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .hero__scroll {
