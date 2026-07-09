@@ -52,6 +52,34 @@ const countIO = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 counters.forEach((c) => countIO.observe(c));
 
+/* Rotating word — "Specialists who speak your ___" */
+(function () {
+  const el = document.getElementById('rotator');
+  if (!el) return;
+  const words = [
+    ['science.',    '#2f6fe0'],  // medical blue
+    ['brand.',      '#d24d86'],  // fashion pink
+    ['technology.', '#6b4fd0'],  // violet
+    ['goals.',      '#2c7a5b'],  // corporate green
+    ['audience.',   '#9c3b46'],  // oxblood
+  ];
+  el.textContent = words[0][0];
+  el.style.color = words[0][1];
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let i = 0;
+  setInterval(() => {
+    el.classList.add('rotator--out');
+    setTimeout(() => {
+      i = (i + 1) % words.length;
+      el.textContent = words[i][0];
+      el.style.color = words[i][1];
+      el.classList.remove('rotator--out');
+      el.classList.add('rotator--in');
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('rotator--in')));
+    }, 330);
+  }, 2600);
+})();
+
 /* Diagonal montage strips — slide horizontally as the section scrolls past */
 (function () {
   const section = document.querySelector('.strips');
