@@ -1,0 +1,200 @@
+{
+  "_readme": "EDIT THIS FILE TO UPDATE THE SITE. Layout never changes — only what's shown. Text tips: use \\n for a line break, wrap a word in *asterisks* to give it the accent color. Set any section's 'show' to false to hide it. Images: paste any image URL (or upload files to a /media folder in this repo and use 'media/yourfile.jpg'). Videos: use a .mp4 URL anywhere in the montage rows and it becomes a looping video automatically. After editing, commit — the live site updates in ~2 minutes. Bump site.version so you can tell which build you're looking at.",
+
+  "site": {
+    "name": "Aperio",
+    "title": "Aperio — Events, Content & Strategy",
+    "theme": "medical",
+    "version": "1.3"
+  },
+
+  "hero": {
+    "show": true,
+    "eyebrow": "Medical · Corporate · University",
+    "title": "Prepare.\nTranslate.\nAmplify.",
+    "lede": "Your goals, translated into an event — and a strategy for the content that outlives it.",
+    "image": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=2400&q=80"
+  },
+
+  "statement": {
+    "show": true,
+    "text": "Small, made *impactful*.\nBig, made *effortless*."
+  },
+
+  "sectors": {
+    "show": true,
+    "eyebrow": "Who we serve",
+    "title": "Your field. Your language.",
+    "items": [
+      { "name": "Medical", "keywords": "Congresses · Symposia · Launches" },
+      { "name": "Corporate", "keywords": "Summits · Town Halls · Investor Days" },
+      { "name": "University", "keywords": "Ceremonies · Campaigns · Conferences" }
+    ]
+  },
+
+  "approach": {
+    "show": true,
+    "blocks": [
+      {
+        "eyebrow": "Collaboration",
+        "title": "It starts with your goal.",
+        "lead": "We speak your language — clinical, corporate, academic — and the technicians' who build it."
+      },
+      {
+        "eyebrow": "The long game",
+        "title": "Communicate early.",
+        "lead": "It's how we reach the long-tail goals — not just the night of."
+      }
+    ]
+  },
+
+  "capabilities": {
+    "show": true,
+    "eyebrow": "Capabilities",
+    "title": "What we do.",
+    "items": [
+      { "name": "Strategy & Prep", "desc": "Goals in, a plan out." },
+      { "name": "Creative Production", "desc": "Concept, shoot, direction." },
+      { "name": "Post-Production", "desc": "Edit, color, motion, sound." },
+      { "name": "Social & Digital", "desc": "Content that travels." },
+      { "name": "Live Events", "desc": "Staged, run, realized." },
+      { "name": "Virtual Events", "desc": "Broadcast-grade, anywhere." },
+      { "name": "Content Strategy", "desc": "How you use it, long after." }
+    ]
+  },
+
+  "montage": {
+    "show": true,
+    "note": "Our partners' privacy comes first. The imagery here is inspired by real events we've delivered — generated fresh for display, while the originals stay under NDA.",
+    "rows": [
+      [
+        "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=640&q=70"
+      ],
+      [
+        "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=640&q=70"
+      ],
+      [
+        "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=640&q=70",
+        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=640&q=70"
+      ]
+    ]
+  },
+
+  "services": {
+    "show": true,
+    "eyebrow": "How we partner",
+    "title": "A partner, end to end.",
+    "lead": "We partner with you — and leave you a strategy, not just a folder of files.",
+    "cards": [
+      { "icon": "◇", "name": "Prep & Strategy", "desc": "Planned together, before day one." },
+      { "icon": "►", "name": "The Event", "desc": "We translate your goal, live." },
+      { "icon": "◎", "name": "Content", "desc": "Film, photo, motion, design, AI." },
+      { "icon": "↗", "name": "Post-Event Strategy", "desc": "A plan to use it — long after." }
+    ]
+  },
+
+  "blindspot": {
+    "show": true,
+    "text": "Most event media is\ncaptured, then *forgotten*.",
+    "sub": "Ours leaves with a plan."
+  },
+
+  "team": {
+    "show": true,
+    "eyebrow": "The team",
+    "titlePrefix": "Specialists who speak\nyour ",
+    "words": [
+      { "word": "science.", "color": "#2f6fe0" },
+      { "word": "brand.", "color": "#d24d86" },
+      { "word": "technology.", "color": "#6b4fd0" },
+      { "word": "goals.", "color": "#2c7a5b" },
+      { "word": "audience.", "color": "#9c3b46" }
+    ],
+    "lead": "A managed network of vertical-specific content managers — vetted by us, assembled for your event."
+  },
+
+  "innovation": {
+    "show": true,
+    "eyebrow": "Innovation",
+    "title": "Engineered behind the scenes.",
+    "lead": "We translate your idea into an event — then a custom content strategy that keeps working long after.",
+    "pillars": [
+      { "name": "Custom process", "desc": "Built around your goals." },
+      { "name": "AI as a tool", "desc": "Experience, accelerated." },
+      { "name": "Beyond the event", "desc": "Content reinvented, not shelved." }
+    ]
+  },
+
+  "experience": {
+    "show": true,
+    "number": 20,
+    "suffix": "+",
+    "label": "Years partnering with clients who can tell the difference."
+  },
+
+  "work": {
+    "show": true,
+    "eyebrow": "Selected work",
+    "title": "A look at the room.",
+    "tiles": [
+      { "tag": "Product Reveal", "title": "Aurora Launch", "image": "" },
+      { "tag": "Conference", "title": "Forward Summit", "image": "" },
+      { "tag": "Brand Gala", "title": "The Atrium", "image": "" },
+      { "tag": "Keynote", "title": "Vantage", "image": "" },
+      { "tag": "Investor Day", "title": "Meridian Capital", "image": "" }
+    ]
+  },
+
+  "clients": {
+    "show": true,
+    "eyebrow": "Clients",
+    "title": "In good company.",
+    "logos": [
+      { "name": "NORDISK", "img": "" },
+      { "name": "AVENIR", "img": "" },
+      { "name": "MERIDIAN", "img": "" },
+      { "name": "KESTREL", "img": "" },
+      { "name": "ALTUS", "img": "" },
+      { "name": "OBELISK", "img": "" },
+      { "name": "VERTEX", "img": "" },
+      { "name": "LUMEN", "img": "" },
+      { "name": "ATLAS", "img": "" },
+      { "name": "SOLIS", "img": "" },
+      { "name": "NIMBUS", "img": "" },
+      { "name": "AURELIA", "img": "" }
+    ]
+  },
+
+  "contact": {
+    "show": true,
+    "eyebrow": "Start a project",
+    "title": "Let's talk goals.",
+    "lead": "Tell us about the event. We'll bring a plan.",
+    "email": "hello@aperio.studio",
+    "phone": "+1 (000) 000-0000"
+  },
+
+  "footer": {
+    "note": "Mockup — placeholder name & imagery."
+  }
+}

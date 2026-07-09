@@ -28,6 +28,22 @@ Production · Asset Creation · Activation) · Team/scale · Innovation (AI + pr
 only render in a real browser (not in headless screenshot tools), so use a live
 preview to judge type and motion.
 
+## ✏️ Editing the site (no code needed)
+
+**Everything editable lives in one file: [`content.json`](content.json).**
+The layout never changes — only what fills it.
+
+1. Open `content.json` on github.com and click the **pencil icon** (works on your phone too).
+2. Change what you need:
+   - **Copy** — edit any text. `\n` makes a line break; wrap a word in `*asterisks*` to give it the accent color.
+   - **Hide a section** — set its `"show": true` to `false`.
+   - **Images** — paste any image URL (or upload files via *Add file → Upload files* into a `media/` folder, then use `"media/yourfile.jpg"`).
+   - **Videos in the montage** — use a `.mp4` URL in `montage.rows` and it automatically becomes a looping video tile.
+   - **Rotating words** — edit `team.words` (word + hex color).
+   - **Theme** — `site.theme`: `medical` (blue), `corporate` (green), `violet`, `fashion`, `oxblood`, `mono`.
+   - **Version** — bump `site.version` so the footer badge tells you which build is live.
+3. **Commit changes** (green button). The live site updates in ~2 minutes.
+
 ## Run it
 No build step — plain HTML/CSS/JS. Open `index.html`, or serve it:
 
