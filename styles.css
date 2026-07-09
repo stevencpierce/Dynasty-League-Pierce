@@ -301,7 +301,7 @@ em { font-style: italic; }
    ========================================================= */
 .rotator {
   display: inline-block; will-change: transform, opacity;
-  transition: transform .32s var(--ease), opacity .32s var(--ease);
+  transition: transform .55s cubic-bezier(.45, 0, .25, 1), opacity .55s cubic-bezier(.45, 0, .25, 1);
 }
 .rotator--out { opacity: 0; transform: translateY(-16px); }
 .rotator--in  { opacity: 0; transform: translateY(18px); transition: none; }
