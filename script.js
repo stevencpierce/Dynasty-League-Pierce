@@ -284,7 +284,7 @@ function handleSubmit(e) {
       { word: 'brand.', color: '#d24d86' },
       { word: 'technology.', color: '#6b4fd0' },
       { word: 'goals.', color: '#2c7a5b' },
-      { word: 'mission.', color: '#0f766e' },
+      { word: 'mission.', color: '#c98a2d' },
       { word: 'audience.', color: '#9c3b46' }
     ]).map(w => Array.isArray(w) ? { word: w[0], color: w[1] } : w);
     el.textContent = list[0].word;

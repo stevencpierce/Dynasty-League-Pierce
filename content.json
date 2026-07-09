@@ -5,7 +5,7 @@
     "name": "Aperio",
     "title": "Aperio — Events, Content & Strategy",
     "theme": "medical",
-    "version": "1.6"
+    "version": "1.7"
   },
 
   "hero": {
@@ -130,7 +130,7 @@
       { "word": "brand.", "color": "#d24d86" },
       { "word": "technology.", "color": "#6b4fd0" },
       { "word": "goals.", "color": "#2c7a5b" },
-      { "word": "mission.", "color": "#0f766e" },
+      { "word": "mission.", "color": "#c98a2d" },
       { "word": "audience.", "color": "#9c3b46" }
     ],
     "lead": "A managed network of vertical-specific content managers — vetted by us, assembled for your event."
