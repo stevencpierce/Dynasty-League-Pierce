@@ -2,7 +2,7 @@
 
 const express = require('express');
 const { getSetting } = require('../db');
-const { capTable, teamCap } = require('../services/capCalculator');
+const { capTable, teamCap, contractLengthUsage } = require('../services/capCalculator');
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get('/table', (req, res) => {
 
 router.get('/team/:id', (req, res) => {
   const season = Number(req.query.season) || Number(getSetting('currentSeason'));
-  res.json(teamCap(Number(req.params.id), season));
+  res.json({ ...teamCap(Number(req.params.id), season), contractLimits: contractLengthUsage(Number(req.params.id)) });
 });
 
 module.exports = router;

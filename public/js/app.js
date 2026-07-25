@@ -24,6 +24,26 @@ function money(n) {
 }
 const fullMoney = (n) => `$${(Number(n) || 0).toLocaleString()}`;
 
+// Renders the per-team multi-year contract usage vs. league limits.
+function contractLimitsHtml(limits) {
+  if (!limits) return '';
+  // Show longest deals first (4, 3, 2); skip the unlimited 1-year row.
+  const rows = Object.entries(limits)
+    .filter(([len, info]) => info.max != null)
+    .sort((a, b) => Number(b[0]) - Number(a[0]))
+    .map(([len, info]) => {
+      const cls = info.over ? 'pill bad' : 'pill good';
+      return `<div class="card" style="text-align:center">
+        <div class="label">${len}-yr deals</div>
+        <div class="stat" style="font-size:20px">${info.used} / ${info.max}</div>
+        <span class="${cls}">${info.over ? 'OVER LIMIT' : 'OK'}</span>
+      </div>`;
+    })
+    .join('');
+  if (!rows) return '';
+  return `<h2 style="margin-top:6px">Contract Limits</h2><div class="grid cols-3 mb">${rows}</div>`;
+}
+
 function toast(msg, kind = '') {
   const t = $('#toast');
   t.textContent = msg;
@@ -205,6 +225,7 @@ async function loadRoster(teamId) {
       <div class="card"><div class="label">Available</div><div class="stat ${capInfo.available < 0 ? 'bad' : 'good'}">${money(capInfo.available)}</div></div>
       <div class="card"><div class="label">Active Roster</div><div class="stat">${capInfo.rosterSize}</div></div>
     </div>
+    ${contractLimitsHtml(capInfo.contractLimits)}
     <div class="panel">
       <table>
         <thead><tr><th>Player</th><th>Pos</th><th>NFL</th><th>Years</th><th class="num">${season} Salary</th>${commishOnly('<th></th>')}</tr></thead>
@@ -517,6 +538,7 @@ VIEWS.extras = async () => {
 VIEWS.admin = async () => {
   if (!isCommish()) { view().innerHTML = '<p class="muted">Commissioner access required.</p>'; return; }
   const s = state.settings;
+  const cl = s.contractLimits || {};
   const { users } = await API.get('/api/auth/users');
   const teamOpts = state.teams.map((t) => `<option value="${t.id}">${esc(t.name)}</option>`).join('');
   view().innerHTML = `
@@ -531,7 +553,13 @@ VIEWS.admin = async () => {
       ${settingField('rosterMax', 'Max roster size', s.rosterMax)}
       ${settingField('rosterMin', 'Min roster size', s.rosterMin)}
       ${settingField('maxContractYears', 'Max contract years', s.maxContractYears)}
-      <div><button class="btn" id="save-settings">Save Settings</button></div>
+    </div>
+    <h2>📑 Contract Limits (max per team)</h2>
+    <div class="panel grid cols-3">
+      <label class="field"><span>4-year deals</span><input data-limit="4" type="number" value="${esc(cl[4] ?? '')}"></label>
+      <label class="field"><span>3-year deals</span><input data-limit="3" type="number" value="${esc(cl[3] ?? '')}"></label>
+      <label class="field"><span>2-year deals</span><input data-limit="2" type="number" value="${esc(cl[2] ?? '')}"></label>
+      <div style="grid-column:1/-1"><button class="btn" id="save-settings">Save Settings</button></div>
     </div>
 
     <h2>🏟️ Teams</h2>
@@ -574,6 +602,11 @@ VIEWS.admin = async () => {
   $('#save-settings').addEventListener('click', () => safe(async () => {
     const payload = {};
     view().querySelectorAll('[data-setting]').forEach((el) => { payload[el.dataset.setting] = el.value; });
+    const limits = { 1: null };
+    view().querySelectorAll('[data-limit]').forEach((el) => {
+      limits[el.dataset.limit] = el.value === '' ? null : Number(el.value);
+    });
+    payload.contractLimits = limits;
     const { settings } = await API.put('/api/settings', payload);
     state.settings = settings;
     $('#league-name').textContent = settings.leagueName;

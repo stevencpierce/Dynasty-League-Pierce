@@ -12,7 +12,7 @@ module.exports = {
   bootstrap: {
     commissionerUsername: process.env.COMMISH_USER || 'commissioner',
     commissionerPassword: process.env.COMMISH_PASS || 'changeme',
-    leagueName: 'Dynasty League Pierce',
+    leagueName: 'Astoria Dynasty League',
     currentSeason: 2026,
     // Reality Sports Online style defaults (dollars).
     salaryCap: 200000000, // $200M
@@ -20,5 +20,11 @@ module.exports = {
     rosterMin: 18,
     minContractYears: 1,
     maxContractYears: 4,
+    // Max active multi-year contracts per team, by length (null = unlimited).
+    // 2026: 2-year limit raised from 3 to 6.
+    contractLimits: { 4: 1, 3: 2, 2: 6, 1: null },
+    practiceSquadSlots: 3,
+    irSlots: 2,
+    irDfrSlots: 2,
   },
 };

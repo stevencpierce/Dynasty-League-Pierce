@@ -67,4 +67,41 @@ function capTable(season) {
     .sort((a, b) => b.available - a.available);
 }
 
-module.exports = { contractSalaryForSeason, teamRosterSize, teamCap, capTable };
+// A contract's length in years (inclusive of both endpoints).
+function contractLength(c) {
+  return Math.max(1, c.end_season - c.start_season + 1);
+}
+
+// How many active multi-year contracts a team holds by length, vs. the league
+// limits. Returns e.g. { "2": { used: 7, max: 6, over: true }, ... }.
+function contractLengthUsage(teamId) {
+  const limits = getSetting('contractLimits', {}) || {};
+  const contracts = db
+    .prepare("SELECT * FROM contracts WHERE team_id = ? AND status = 'active'")
+    .all(teamId);
+  const counts = {};
+  for (const c of contracts) {
+    const len = contractLength(c);
+    counts[len] = (counts[len] || 0) + 1;
+  }
+  const usage = {};
+  for (const len of new Set([...Object.keys(counts), ...Object.keys(limits)])) {
+    const max = limits[len];
+    const used = counts[len] || 0;
+    usage[len] = {
+      used,
+      max: max == null ? null : Number(max),
+      over: max != null && used > Number(max),
+    };
+  }
+  return usage;
+}
+
+module.exports = {
+  contractSalaryForSeason,
+  teamRosterSize,
+  teamCap,
+  capTable,
+  contractLength,
+  contractLengthUsage,
+};
