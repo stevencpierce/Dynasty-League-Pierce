@@ -1,0 +1,434 @@
+<style>
+  /* ============================================================= *
+   *  Astoria Dynasty League — 2026 Rulebook
+   *  Self-contained. Theme-aware (light + dark). No external assets.
+   * ============================================================= */
+  :root {
+    --ground: #0e1620;
+    --panel:  #16212e;
+    --panel-2:#1d2a3a;
+    --line:   #2a3a4d;
+    --ink:    #eaf0f6;
+    --ink-dim:#93a4b8;
+    --gold:   #d3a851;
+    --gold-2: #e6c079;
+    --gold-soft: rgba(211,168,81,.13);
+    --good:   #46b986;
+    --warn:   #e0a533;
+    --crit:   #e5624d;
+    --shadow: 0 1px 0 rgba(255,255,255,.03), 0 18px 40px -24px rgba(0,0,0,.7);
+    --maxw: 940px;
+    --sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --ground: #eef1f5;
+      --panel:  #ffffff;
+      --panel-2:#f3f6f9;
+      --line:   #d9e0e8;
+      --ink:    #172230;
+      --ink-dim:#5a6a7b;
+      --gold:   #8a6a1f;
+      --gold-2: #a9832c;
+      --gold-soft: rgba(138,106,31,.10);
+      --good:   #1f8f5f;
+      --warn:   #b5791a;
+      --crit:   #c2412e;
+      --shadow: 0 1px 0 rgba(255,255,255,.6), 0 16px 34px -26px rgba(20,40,70,.4);
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #eef1f5; --panel: #ffffff; --panel-2: #f3f6f9; --line: #d9e0e8;
+    --ink: #172230; --ink-dim: #5a6a7b; --gold: #8a6a1f; --gold-2: #a9832c;
+    --gold-soft: rgba(138,106,31,.10); --good: #1f8f5f; --warn: #b5791a; --crit: #c2412e;
+    --shadow: 0 1px 0 rgba(255,255,255,.6), 0 16px 34px -26px rgba(20,40,70,.4);
+  }
+  :root[data-theme="dark"] {
+    --ground: #0e1620; --panel: #16212e; --panel-2: #1d2a3a; --line: #2a3a4d;
+    --ink: #eaf0f6; --ink-dim: #93a4b8; --gold: #d3a851; --gold-2: #e6c079;
+    --gold-soft: rgba(211,168,81,.13); --good: #46b986; --warn: #e0a533; --crit: #e5624d;
+    --shadow: 0 1px 0 rgba(255,255,255,.03), 0 18px 40px -24px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+
+  /* ---- Eyebrow / labels ---- */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0;
+  }
+
+  /* ---- Masthead ---- */
+  header.mast {
+    position: relative;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    background:
+      radial-gradient(120% 140% at 85% -20%, var(--gold-soft), transparent 60%),
+      linear-gradient(180deg, var(--panel), var(--ground));
+  }
+  .mast-grid {
+    /* faint yard-line texture */
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 84px);
+    opacity: .35;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 40%, #000 70%, transparent);
+            mask-image: linear-gradient(180deg, transparent, #000 40%, #000 70%, transparent);
+    pointer-events: none;
+  }
+  .mast-inner { position: relative; padding: 62px 0 46px; }
+  .crest {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-dim);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 14px; background: var(--panel-2);
+  }
+  .crest b { color: var(--gold); font-weight: 700; }
+  h1.title {
+    font-size: clamp(38px, 8vw, 74px);
+    line-height: .95;
+    letter-spacing: -.02em;
+    font-weight: 800;
+    text-wrap: balance;
+    margin: 20px 0 8px;
+  }
+  h1.title .sub { display: block; color: var(--gold); }
+  .lede {
+    max-width: 60ch; color: var(--ink-dim); font-size: 17px; margin: 14px 0 26px;
+  }
+  .format-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
+    color: var(--ink); background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 7px; padding: 5px 11px;
+  }
+  .tag .dot { color: var(--gold); }
+
+  /* ---- Sticky section nav ---- */
+  nav.toc {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(9px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.toc .wrap { display: flex; gap: 4px; overflow-x: auto; padding-top: 8px; padding-bottom: 8px; scrollbar-width: thin; }
+  nav.toc a {
+    flex: 0 0 auto;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--ink-dim); text-decoration: none;
+    padding: 7px 12px; border-radius: 7px; white-space: nowrap;
+  }
+  nav.toc a:hover { color: var(--ink); background: var(--panel-2); }
+  nav.toc a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* ---- Sections ---- */
+  main { padding: 20px 0 40px; }
+  section { padding: 42px 0 12px; scroll-margin-top: 58px; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
+  .sec-no {
+    font-family: var(--mono); font-size: 13px; color: var(--gold);
+    border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; background: var(--gold-soft);
+  }
+  h2 { font-size: clamp(24px, 4vw, 32px); letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+  .sec-sub { color: var(--ink-dim); margin: 4px 0 22px; max-width: 66ch; }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px; box-shadow: var(--shadow);
+  }
+  .card + .card { margin-top: 16px; }
+
+  /* ---- Contract limit stat tiles ---- */
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .tile {
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px;
+    padding: 18px 16px; text-align: center; position: relative;
+  }
+  .tile .len {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim);
+  }
+  .tile .max {
+    font-family: var(--mono); font-weight: 700; font-variant-numeric: tabular-nums;
+    font-size: 44px; line-height: 1.05; margin: 6px 0 2px; color: var(--ink);
+  }
+  .tile .cap { font-size: 12.5px; color: var(--ink-dim); }
+  .tile.flagship { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold-soft); }
+  .tile.flagship .max { color: var(--gold); }
+  .tile .stamp {
+    position: absolute; top: 10px; right: 10px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em;
+    color: var(--gold); border: 1px solid var(--gold); border-radius: 5px; padding: 1px 5px;
+  }
+
+  /* ---- Amendment callout ---- */
+  .amendment {
+    display: flex; gap: 14px; align-items: flex-start;
+    margin-top: 16px; padding: 16px 18px;
+    background: var(--gold-soft); border: 1px solid var(--gold);
+    border-radius: 12px;
+  }
+  .amendment .badge {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ground); background: var(--gold); border-radius: 5px; padding: 4px 8px; white-space: nowrap;
+    font-weight: 700; margin-top: 2px;
+  }
+  :root[data-theme="dark"] .amendment .badge, .amendment .badge { color: #14100a; }
+  .amendment p { margin: 0; font-size: 14.5px; }
+  .amendment .old { text-decoration: line-through; color: var(--ink-dim); font-family: var(--mono); }
+  .amendment .new { color: var(--gold); font-weight: 700; font-family: var(--mono); }
+
+  /* ---- Spec rows (practice squad / IR) ---- */
+  .spec { display: grid; grid-template-columns: 150px 1fr; gap: 2px 20px; }
+  .spec dt {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold); padding: 12px 0 12px; border-top: 1px solid var(--line);
+  }
+  .spec dd {
+    margin: 0; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink);
+  }
+  .spec dt:first-of-type, .spec dd:first-of-type { border-top: none; }
+  .spec dd b { color: var(--ink); }
+
+  ul.clean { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+  ul.clean li { position: relative; padding-left: 22px; font-size: 15px; }
+  ul.clean li::before {
+    content: "›"; position: absolute; left: 4px; top: -1px; color: var(--gold); font-weight: 700; font-size: 17px;
+  }
+  strong.hi { color: var(--gold); }
+
+  /* two-column compare (IR vs IR-DFR) */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .mini-h { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin: 0 0 10px; }
+
+  /* roster slot strip */
+  .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .slot { background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .slot .n { font-family: var(--mono); font-size: 32px; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
+  .slot .k { font-size: 14px; color: var(--ink); font-weight: 600; }
+  .slot .d { font-size: 12.5px; color: var(--ink-dim); }
+
+  .note {
+    font-family: var(--mono); font-size: 12.5px; color: var(--ink-dim);
+    border-left: 2px solid var(--line); padding: 4px 0 4px 14px; margin-top: 16px;
+  }
+
+  footer {
+    border-top: 1px solid var(--line); margin-top: 40px; padding: 34px 0 60px;
+    color: var(--ink-dim); font-size: 13.5px;
+  }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+  footer b { color: var(--ink); }
+  .theme-toggle {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase;
+    background: var(--panel-2); color: var(--ink-dim); border: 1px solid var(--line);
+    border-radius: 7px; padding: 6px 12px; cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--ink); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  @media (max-width: 720px) {
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+    .spec { grid-template-columns: 1fr; }
+    .spec dt { padding-bottom: 0; }
+    .spec dd { padding-top: 4px; border-top: none; }
+    .spec dt { border-top: 1px solid var(--line); }
+    .two, .slots { grid-template-columns: 1fr; }
+  }
+</style>
+
+<header class="mast">
+  <div class="mast-grid"></div>
+  <div class="wrap mast-inner">
+    <span class="crest">🏈 Reality Sports Online &nbsp;·&nbsp; <b>Dynasty</b></span>
+    <h1 class="title">Astoria Dynasty League<span class="sub">2026 Rulebook</span></h1>
+    <p class="lede">The living reference for our salary-cap dynasty league — contract limits, the new practice squad, injured reserve, and rosters. Bookmark it, and check here before every auction.</p>
+    <div class="format-tags">
+      <span class="tag"><span class="dot">●</span> Hard salary cap</span>
+      <span class="tag"><span class="dot">●</span> Multi-year contracts</span>
+      <span class="tag"><span class="dot">●</span> 25-man rosters</span>
+      <span class="tag"><span class="dot">●</span> Adopted for 2026</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#contracts">Contracts &amp; Cap</a>
+    <a href="#practice-squad">Practice Squad</a>
+    <a href="#ir">Injured Reserve</a>
+    <a href="#rosters">Rosters</a>
+    <a href="#trades">Trades</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ CONTRACTS & CAP ============ -->
+  <section id="contracts">
+    <div class="sec-head"><span class="sec-no">01</span><h2>Contracts &amp; Salary Cap</h2></div>
+    <p class="sec-sub">The league runs a <strong class="hi">hard salary cap</strong> — a team may never exceed it, and any trade that would put a team over the cap is invalid. Auction free agents sign for 1, 2, 3, or 4 years, but long-term deals are capped per team.</p>
+
+    <div class="card">
+      <p class="eyebrow" style="margin-bottom:16px">Maximum multi-year contracts per team</p>
+      <div class="tiles">
+        <div class="tile">
+          <div class="len">4-Year</div>
+          <div class="max">1</div>
+          <div class="cap">player max</div>
+        </div>
+        <div class="tile">
+          <div class="len">3-Year</div>
+          <div class="max">2</div>
+          <div class="cap">players max</div>
+        </div>
+        <div class="tile flagship">
+          <span class="stamp">2026 ▲</span>
+          <div class="len">2-Year</div>
+          <div class="max">6</div>
+          <div class="cap">players max</div>
+        </div>
+        <div class="tile">
+          <div class="len">1-Year</div>
+          <div class="max">∞</div>
+          <div class="cap">unlimited</div>
+        </div>
+      </div>
+
+      <div class="amendment">
+        <span class="badge">2026 Amendment</span>
+        <p>The <b>2-year contract limit</b> was increased from <span class="old">3</span> to <span class="new">6</span> players — giving teams room to lock in depth and rebuild core pieces without burning through their 3-year and 4-year slots.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="mini-h">How to spend your slots</p>
+      <ul class="clean">
+        <li><strong class="hi">4-year deals</strong> — elite, long-term building blocks. You get exactly one, so use it wisely.</li>
+        <li><strong class="hi">3-year deals</strong> — second-tier assets and role players you want to lock in (you get two).</li>
+        <li><strong class="hi">2-year deals</strong> — depth and role players. As of 2026 you get six.</li>
+        <li><strong class="hi">1-year deals</strong> — flexibility and short-term needs, unlimited within your cap space.</li>
+      </ul>
+      <p class="note">Cutting a player may incur dead cap, charged in the season(s) of the cut.</p>
+    </div>
+  </section>
+
+  <!-- ============ PRACTICE SQUAD ============ -->
+  <section id="practice-squad">
+    <div class="sec-head"><span class="sec-no">02</span><h2>Practice Squad</h2></div>
+    <p class="sec-sub"><strong class="hi">New in 2026.</strong> A 3-slot roster for stashing young, developing players during the season — free of cap and roster cost.</p>
+
+    <div class="card">
+      <dl class="spec">
+        <dt>Slots</dt>
+        <dd><b>3 practice-squad spots.</b> They don't count against your 25-man active roster or your salary cap — effectively free space for development.</dd>
+        <dt>Timing</dt>
+        <dd>In-season tool only. Players can be added <b>only after the free-agent auction</b>, during the season — never before or during the auction.</dd>
+        <dt>Eligibility</dt>
+        <dd>Only players with <b>two full NFL seasons or less</b>. A player entering their 3rd NFL season is eligible; entering their 4th is not. League-drafted rookies go straight to the active roster and can't be stashed here.</dd>
+        <dt>Contracts</dt>
+        <dd>No multi-year contracts — practice-squad players are in-season FAAB pickups.</dd>
+        <dt>Activation</dt>
+        <dd>Promote to the active roster anytime you have an open spot. <b>One-way only:</b> once activated, a player can't return to the practice squad.</dd>
+        <dt>Poaching</dt>
+        <dd>Other teams can poach your practice-squad players with FAAB bids. You get <b>right of first refusal</b> within the waiver window (currently <b>1 day</b>): activate the player in time and the poach fails; otherwise the poaching team gets them.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ INJURED RESERVE ============ -->
+  <section id="ir">
+    <div class="sec-head"><span class="sec-no">03</span><h2>Injured Reserve</h2></div>
+    <p class="sec-sub">Two flavors of IR, four slots total. Both free up a roster spot — but not cap space.</p>
+
+    <div class="card">
+      <div class="two">
+        <div>
+          <p class="mini-h">Standard IR · 2 slots</p>
+          <ul class="clean">
+            <li>Player sits <strong class="hi">indefinitely</strong> until you move them off.</li>
+            <li>No automatic return date.</li>
+            <li>Use for season-ending or long-term injuries.</li>
+          </ul>
+        </div>
+        <div>
+          <p class="mini-h">IR-DFR · 2 slots</p>
+          <ul class="clean">
+            <li>Designated for return after <strong class="hi">exactly 6 weeks</strong>.</li>
+            <li>Auto-moves to your active roster when eligible — you must have space.</li>
+            <li>RSO tracks the 6-week clock and notifies you.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Cap impact: players on IR / IR-DFR still count against the salary cap. They free up a roster spot, not cap space.</p>
+    </div>
+  </section>
+
+  <!-- ============ ROSTERS ============ -->
+  <section id="rosters">
+    <div class="sec-head"><span class="sec-no">04</span><h2>Rosters</h2></div>
+    <p class="sec-sub">Every active player counts against the cap. Practice squad and IR sit outside your 25.</p>
+    <div class="card">
+      <div class="slots">
+        <div class="slot"><div class="n">25</div><div class="k">Active roster</div><div class="d">All count against the cap</div></div>
+        <div class="slot"><div class="n">3</div><div class="k">Practice squad</div><div class="d">Off cap &amp; off the 25-man</div></div>
+        <div class="slot"><div class="n">2+2</div><div class="k">IR &amp; IR-DFR</div><div class="d">Frees a roster spot, not cap</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRADES ============ -->
+  <section id="trades">
+    <div class="sec-head"><span class="sec-no">05</span><h2>Trades</h2></div>
+    <p class="sec-sub">Move players — with their contracts — and draft picks. The math has to work for both sides.</p>
+    <div class="card">
+      <ul class="clean">
+        <li>Trades may include players (with their existing contracts) and draft picks.</li>
+        <li><strong class="hi">Both teams must remain cap-compliant</strong> after the trade — a deal that puts either team over the cap doesn't go through.</li>
+        <li class="note" style="border:none;padding-left:22px;margin:0">Trade deadline and any veto/review rules to be recorded here.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b>Astoria Dynasty League</b> — 2026 Rulebook<br>
+      A living document. Rules are amended by league vote; the commissioner keeps this page current.
+    </div>
+    <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle light or dark theme">◐ Theme</button>
+  </div>
+</footer>
+
+<script>
+  // Manual theme toggle — stamps data-theme, overriding the OS preference.
+  (function () {
+    var btn = document.getElementById('themeBtn');
+    var root = document.documentElement;
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme');
+      if (!current) {
+        current = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    });
+  })();
+</script>
